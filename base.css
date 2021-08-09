@@ -1,0 +1,39 @@
+/* base styles */
+* {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	font-family: 'Roboto', sans-serif;
+	color: #212529;
+}
+
+img,
+embed,
+object,
+video {
+	max-width: 100%;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 400;
+}
+h1,
+h2,
+h3,
+h3 {
+	margin: 0 0 1rem 0;
+}

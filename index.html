@@ -5,25 +5,33 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Weather App</title>
+		<link rel="stylesheet" href="normalize.css" />
+		<link rel="stylesheet" href="base.css" />
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<h1>Weather App</h1>
-		<form id="form">
-			<input
-				type="text"
-				id="search"
-				placeholder="Search by city or zip code"
-				autocomplete="off"
-			/>
-		</form>
+		<div class="container">
+			<h1>Local Weather</h1>
+			<form id="form">
+				<div class="form-control">
+					<input
+						class="form-control"
+						type="text"
+						id="search"
+						placeholder="Search by city or zip code"
+						autocomplete="off"
+					/>
+					<button class="btn btn-accent" type="submit">Search</button>
+					<small>Input cannot contain both letters and numbers</small>
+				</div>
+			</form>
 
-		<main class="main">
-			<div id="current-weather"></div>
-			<div id="forecast-weather"></div>
-		</main>
+			<main class="main">
+				<div id="current-weather"></div>
+				<div id="forecast-weather"></div>
+			</main>
+		</div>
 		<script src="config.js"></script>
 		<script src="script.js"></script>
-</body>
+	</body>
 </html>
-

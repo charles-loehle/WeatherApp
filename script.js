@@ -1,12 +1,14 @@
 const form = document.getElementById('form');
+const formControl = document.querySelector('.form-control');
+const small = document.querySelector('small');
 const searchInput = document.getElementById('search');
 const main = document.getElementById('main');
 const currentWeather = document.getElementById('current-weather');
 const forecastWeather = document.getElementById('forecast-weather');
+const alphabetRegex = /[a-z]/gi;
+const digitRegex = /[0-9]/gi;
 
 form.addEventListener('submit', e => {
-	const alphabetRegex = /[a-z]/gi;
-	const digitRegex = /[0-9]/gi;
 	const input = searchInput.value;
 
 	e.preventDefault();
@@ -14,32 +16,48 @@ form.addEventListener('submit', e => {
 	// input validation
 	if (alphabetRegex.test(input) && digitRegex.test(input)) {
 		console.log('Invalid input value');
-	} else if (alphabetRegex.test(input)) {
-		// check for letters only
-		//console.log(input);
-		if (input) {
-			console.log('searched by location');
-		}
+		setError();
 	} else {
-		// numbers only
-		//console.log(input);
-		if (input) {
-			useCurrentWeatherApi(input);
-		}
+		removeError();
+		useCurrentWeatherApi(input);
 	}
 });
 
-function useCurrentWeatherApi(zipcode) {
-	fetch(
-		`https://api.openweathermap.org/data/2.5/weather?zip=${zipcode},us&appid=${apikey}&units=imperial`
-	)
-		.then(res => res.json())
-		.then(data => {
-			showCurrentWeather(data);
-			useOneCallApi(data);
-		});
+function setError() {
+	formControl.className = 'form-control error';
 }
 
+function removeError() {
+	formControl.className = 'form-control';
+}
+
+// check for city or zip code and use appropriate api query
+function useCurrentWeatherApi(input) {
+	if (alphabetRegex.test(input)) {
+		// get weather by city name
+		fetch(
+			`https://api.openweathermap.org/data/2.5/weather?q=${input},us&appid=${apikey}&units=imperial`
+		)
+			.then(res => res.json())
+			.then(data => {
+				// console.log(data);
+				showCurrentWeather(data);
+				useOneCallApi(data);
+			});
+	} else {
+		// get weather by zip code
+		fetch(
+			`https://api.openweathermap.org/data/2.5/weather?zip=${input},us&appid=${apikey}&units=imperial`
+		)
+			.then(res => res.json())
+			.then(data => {
+				showCurrentWeather(data);
+				useOneCallApi(data);
+			});
+	}
+}
+
+// get daily forecast using longitude and latitude from current forecast data
 function useOneCallApi(data) {
 	const { lon, lat } = data.coord;
 	// console.log(data);
@@ -56,7 +74,10 @@ function showCurrentWeather(data) {
 	const { name } = data;
 	const { country } = data.sys;
 	const { description, icon } = data.weather[0];
-	const { temp, temp_min, temp_max } = data.main;
+	// capitalize first character of weather description
+	const capDescription =
+		description[0].toUpperCase() + description.substring(1);
+	const { temp } = data.main;
 	const { speed } = data.wind;
 
 	// console.log(data);
@@ -64,25 +85,29 @@ function showCurrentWeather(data) {
 	let now = new Date();
 
 	currentWeather.innerHTML = `
-	<p>${dateBuilder(now)}</p>
-	<h2>${name}, ${country}</h2>
-	<div class="current-temp">
+	<p class="current-weather__date">${dateBuilder(now)}</p>
+	<h2 class="current-weather__location">${name}, ${country}</h2>
+	<div class="current-weather__details">
 		<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather" />
 		<span>${Math.round(temp)}&#176</span>
-		<div class="description">${description}</div>
-		<div className="wind">Wind: ${speed}mph</div>
-	</div>
-	<h3>low ${Math.round(temp_min)}&#176;F - high ${Math.round(
-		temp_max
-	)}&#176;F</h3>	
-`;
+		<div class="description">${capDescription}</div>
+		<div class="wind">Wind: ${speed}mph</div>
+	</div>`;
 }
 
 // reference: https://javascript.plainenglish.io/display-7-day-weather-forecast-with-openweather-api-aac8ba21c9e3
 function showForecast(data) {
 	let forecastDay = '';
 	const dailyData = data[0].daily;
-	console.log(dailyData);
+	// console.log(dailyData);
+	const { pop } = dailyData[0];
+	// console.log(pop);
+
+	// add preciptiation to current-weather since it is not in the current weather api data
+	const div = document.createElement('div');
+	div.className = 'precipitiation';
+	div.innerText = `Preciptation: ${pop}%`;
+	currentWeather.querySelector('.current-weather__details').appendChild(div);
 
 	return dailyData.map((day, index) => {
 		// if (index > 0) {
@@ -92,18 +117,18 @@ function showForecast(data) {
 		const { description, icon } = day.weather[0];
 		const { min, max } = day.temp;
 
-		console.log(dayname);
+		// console.log(dayname);
 
 		forecastDay = `
 				<div className="forecastday">
-					<p>${dayname}</p>
+					<p class="day">${dayname}</p>
 					<img src="https://openweathermap.org/img/wn/${icon}.png" alt="weather" />
 					<div className="forecastday__temp">${min} / ${max}&#176;F</div>
 					<span>${description}</span>
 				</div>
 			`;
 
-		forecastWeather.insertAdjacentHTML('afterbegin', forecastDay);
+		forecastWeather.insertAdjacentHTML('beforeend', forecastDay);
 		// }
 	});
 }
