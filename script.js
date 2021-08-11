@@ -88,10 +88,10 @@ function showCurrentWeather(data) {
 	<p class="current-weather__date">${dateBuilder(now)}</p>
 	<h2 class="current-weather__location">${name}, ${country}</h2>
 	<div class="current-weather__details">
-		<img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather" />
-		<span>${Math.round(temp)}&#176</span>
-		<div class="description">${capDescription}</div>
-		<div class="wind">Wind: ${speed}mph</div>
+		<img class="weather-icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather" />
+		<p class="temp">${Math.round(temp)}&#176</p>
+		<p class="description">${capDescription}</p>
+		<p class="wind">Wind: ${speed}mph</p>
 	</div>`;
 }
 
@@ -104,10 +104,10 @@ function showForecast(data) {
 	// console.log(pop);
 
 	// add preciptiation to current-weather since it is not in the current weather api data
-	const div = document.createElement('div');
-	div.className = 'precipitiation';
-	div.innerText = `Preciptation: ${pop}%`;
-	currentWeather.querySelector('.current-weather__details').appendChild(div);
+	const p = document.createElement('p');
+	p.className = 'precipitation';
+	p.innerText = `Preciptation: ${pop}%`;
+	currentWeather.querySelector('.current-weather__details').appendChild(p);
 
 	return dailyData.map((day, index) => {
 		// if (index > 0) {

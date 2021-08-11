@@ -1,0 +1,33 @@
+/* CARDS */
+#current-weather {
+	background: #96f5f5;
+	border-radius: 11px;
+	padding: 1rem 1rem 2rem;
+	text-align: center;
+}
+
+.current-weather__details img.weather-icon {
+	width: 60%;
+}
+
+.current-weather__details p.temp {
+	font-size: 5.6rem;
+	margin: 0;
+	font-weight: 600;
+}
+
+h2.current-weather__location {
+	font-size: 2.5rem;
+}
+
+.current-weather__details p.description {
+	margin-bottom: 0;
+}
+
+.current-weather__details p.wind {
+	margin: 0;
+}
+
+.current-weather__details p.precipitation {
+	margin: 0;
+}

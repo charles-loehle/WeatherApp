@@ -8,26 +8,44 @@
 		<link rel="stylesheet" href="normalize.css" />
 		<link rel="stylesheet" href="base.css" />
 		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="header.css" />
+		<link rel="stylesheet" href="cards.css">
 	</head>
 	<body>
-		<div class="container">
-			<h1>Local Weather</h1>
-			<form id="form">
-				<div class="form-control">
-					<input
-						class="form-control"
-						type="text"
-						id="search"
-						placeholder="Search by city or zip code"
-						autocomplete="off"
-					/>
-					<button class="btn btn-accent" type="submit">Search</button>
-					<small>Input cannot contain both letters and numbers</small>
+		<header class="header-wrapper">
+			<div class="main-header">
+				<div class="name">
+					<h1>Weather App</h1>
 				</div>
-			</form>
-
+				<div class="form-container">
+					<form id="form" class="form">
+						<div class="form-control">
+							<input
+								type="text"
+								id="search"
+								placeholder="Search by city or zip code"
+								autocomplete="off"
+							/>
+							<small>Input cannot contain both letters and numbers</small>
+						</div>
+						<button class="btn btn-accent" type="submit">Get Weather</button>
+					</form>
+				</div>
+			</div>
+		</header>
+		<div class="container">
 			<main class="main">
-				<div id="current-weather"></div>
+				<div id="current-weather">
+					<p class="current-weather__date">Tuesday Aug. 10, 2021</p>
+					<h2 class="current-weather__location">Cumming, US</h2>
+					<div class="current-weather__details">
+						<img class="weather-icon" src="/" alt="weather" />
+						<p class="temp">76&#176</p>
+						<p class="description">Overcast</p>
+						<p class="wind">Wind: 4mph</p>
+						<p class="precipitation">Precipitation: 3%</p>
+					</div>
+				</div>
 				<div id="forecast-weather"></div>
 			</main>
 		</div>
