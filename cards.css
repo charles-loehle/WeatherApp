@@ -2,8 +2,21 @@
 #current-weather {
 	background: #96f5f5;
 	border-radius: 11px;
-	padding: 1rem 1rem 2rem;
+	padding: 1rem 1rem 0;
 	text-align: center;
+	margin-bottom: 1rem;
+}
+
+p.current-weather__date {
+	font-size: 1.3rem;	
+	margin-top: 13px;
+	margin-bottom: 11px;
+	color: var(--extra-light-gray-text);
+}
+
+.current-weather__details {
+	position: relative;
+  top: -33px;
 }
 
 .current-weather__details img.weather-icon {
@@ -13,21 +26,60 @@
 .current-weather__details p.temp {
 	font-size: 5.6rem;
 	margin: 0;
-	font-weight: 600;
+	font-weight: 700;
+	position: relative;
+  top: -56px;
 }
 
 h2.current-weather__location {
 	font-size: 2.5rem;
+	font-weight: 700;
+}
+
+.current-weather__details .small-text {
+	position: relative;
+  top: -54px;
+}
+
+.small-text p {
+	font-size: 1.3rem;
+	color: var(--light-gray-text);
 }
 
 .current-weather__details p.description {
-	margin-bottom: 0;
+	margin-bottom: 8px;
 }
 
 .current-weather__details p.wind {
-	margin: 0;
+	margin: 8px;
 }
 
 .current-weather__details p.precipitation {
 	margin: 0;
+}
+
+#forecast-weather {
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.forecastday {
+	background: #96F5F5;
+	border-radius: 11px;
+	padding: 1.5rem;
+	text-align: center;
+}
+
+.forecastday p.day {
+	color: var(--light-gray-text);
+}
+
+.forecastday img {
+	width: 100%;
+}
+
+.forecastday .forecastday__temp h3 {
+	font-weight: 700;
+	font-size: 2rem;
 }

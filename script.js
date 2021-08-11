@@ -40,7 +40,7 @@ function useCurrentWeatherApi(input) {
 		)
 			.then(res => res.json())
 			.then(data => {
-				// console.log(data);
+				//console.log('current weather: ' + data);
 				showCurrentWeather(data);
 				useOneCallApi(data);
 			});
@@ -51,6 +51,7 @@ function useCurrentWeatherApi(input) {
 		)
 			.then(res => res.json())
 			.then(data => {
+				// console.log('current weather: ' + data);
 				showCurrentWeather(data);
 				useOneCallApi(data);
 			});
@@ -66,6 +67,7 @@ function useOneCallApi(data) {
 	)
 		.then(res => res.json())
 		.then(data => {
+			console.log('forecast: ' + data);
 			showForecast([data]);
 		});
 }
@@ -80,7 +82,7 @@ function showCurrentWeather(data) {
 	const { temp } = data.main;
 	const { speed } = data.wind;
 
-	// console.log(data);
+	console.log(data);
 
 	let now = new Date();
 
@@ -90,8 +92,10 @@ function showCurrentWeather(data) {
 	<div class="current-weather__details">
 		<img class="weather-icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather" />
 		<p class="temp">${Math.round(temp)}&#176</p>
-		<p class="description">${capDescription}</p>
-		<p class="wind">Wind: ${speed}mph</p>
+		<div class="small-text">
+			<p class="description">${capDescription}</p>
+			<p class="wind">Wind: ${speed}mph</p>
+		</div>
 	</div>`;
 }
 
@@ -103,11 +107,11 @@ function showForecast(data) {
 	const { pop } = dailyData[0];
 	// console.log(pop);
 
-	// add preciptiation to current-weather since it is not in the current weather api data
+	// add precipittation to current-weather since it is not in the current weather api data
 	const p = document.createElement('p');
 	p.className = 'precipitation';
 	p.innerText = `Preciptation: ${pop}%`;
-	currentWeather.querySelector('.current-weather__details').appendChild(p);
+	currentWeather.querySelector('.current-weather__details .small-text').appendChild(p);
 
 	return dailyData.map((day, index) => {
 		// if (index > 0) {
@@ -120,11 +124,11 @@ function showForecast(data) {
 		// console.log(dayname);
 
 		forecastDay = `
-				<div className="forecastday">
+				<div class="forecastday">
 					<p class="day">${dayname}</p>
 					<img src="https://openweathermap.org/img/wn/${icon}.png" alt="weather" />
-					<div className="forecastday__temp">${min} / ${max}&#176;F</div>
-					<span>${description}</span>
+					<div class="forecastday__temp"><h3>${Math.round(min)} / ${Math.round(max)}&#176;F</h3></div>
+					<p>${description}</p>
 				</div>
 			`;
 

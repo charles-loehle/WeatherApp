@@ -3,6 +3,8 @@
 	--accent-color: #ea6e4b;
 	--accent-color-hover: #e25c37;
 	--light-gray-background: #f2f2f2;
+	--light-gray-text: #435D6B;
+	--extra-light-gray-text: #667C8A;
 }
 /* UTILITY CLASSES */
 .container {
