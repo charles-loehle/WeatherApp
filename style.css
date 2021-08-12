@@ -3,14 +3,15 @@
 	--accent-color: #ea6e4b;
 	--accent-color-hover: #e25c37;
 	--light-gray-background: #f2f2f2;
-	--light-gray-text: #435D6B;
-	--extra-light-gray-text: #667C8A;
+	--light-gray-text: #435d6b;
+	--extra-light-gray-text: #667c8a;
 }
 /* UTILITY CLASSES */
 .container {
 	margin: 0 auto;
 	max-width: 1280px;
 	width: 85%;
+	margin-bottom: 2rem;
 }
 
 /* BUTTONS */
@@ -30,7 +31,7 @@ button {
 	background-color: transparent;
 	border: 1px solid transparent;
 	font-size: 1rem;
-	border-radius: 0 8px 8px 0;
+	border-radius: 0 6px 6px 0;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	width: 40%;
@@ -67,7 +68,7 @@ form.form {
 	line-height: 1.5;
 	color: #212529;
 	background-color: #fff;
-	border-radius: 0.25rem;
+	border-radius: 6px;
 	height: 1.9rem;
 }
 
@@ -90,5 +91,5 @@ form.form {
 	font-size: 14px;
 	padding: 10px;
 	width: 100%;
-	border-radius: 8px 0 0 8px;
+	border-radius: 6px 0 0 6px;
 }

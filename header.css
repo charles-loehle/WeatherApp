@@ -1,5 +1,6 @@
 .header-wrapper {
 	background: var(--light-gray-background);
+	/* background-color: gray; */
 	margin-bottom: 2rem;
 }
 
