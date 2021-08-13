@@ -1,3 +1,5 @@
+import apikey from './config.js';
+
 const form = document.getElementById('form');
 const formControl = document.querySelector('.form-control');
 const small = document.querySelector('small');
