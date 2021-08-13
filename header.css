@@ -2,6 +2,7 @@
 	background: var(--light-gray-background);
 	/* background-color: gray; */
 	margin-bottom: 2rem;
+	padding: 1rem;
 }
 
 .header-wrapper .main-header .name h1 {

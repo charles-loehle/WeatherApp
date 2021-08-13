@@ -15,7 +15,7 @@ form.addEventListener('submit', e => {
 
 	// input validation
 	if (alphabetRegex.test(input) && digitRegex.test(input)) {
-		console.log('Invalid input value');
+		// console.log('Invalid input value');
 		setError();
 	} else {
 		removeError();
@@ -67,7 +67,7 @@ function useOneCallApi(data) {
 	)
 		.then(res => res.json())
 		.then(data => {
-			console.log('forecast: ' + data);
+			// console.log('forecast: ' + data);
 			showForecast([data]);
 		});
 }
@@ -82,7 +82,7 @@ function showCurrentWeather(data) {
 	const { temp } = data.main;
 	const { speed } = data.wind;
 
-	console.log(data);
+	// console.log(data);
 
 	let now = new Date();
 
@@ -112,6 +112,8 @@ function showForecast(data) {
 	p.className = 'precipitation';
 	p.innerText = `Preciptation: ${pop}%`;
 	currentWeather.querySelector('.current-weather__details .small-text').appendChild(p);
+
+	forecastWeather.innerHTML = ''
 
 	return dailyData.map((day, index) => {
 		// if (index > 0) {

@@ -35,6 +35,7 @@ button {
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	width: 40%;
+	max-width: 120px;
 }
 
 .btn-accent {
@@ -75,11 +76,12 @@ form.form {
 .form-control small {
 	color: #ff7a7a;
 	position: absolute;
-	top: 44px;
+	top: 36px;
 	left: 0;
 	visibility: hidden;
 }
 
+/* form validation styles */
 .form-control.error small {
 	visibility: visible;
 }
