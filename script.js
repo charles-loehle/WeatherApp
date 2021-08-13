@@ -1,5 +1,4 @@
-// import apikey from './config.js';
-const apikey = process.env.apikey
+import apikey from './config.js';
 
 const form = document.getElementById('form');
 const formControl = document.querySelector('.form-control');
