@@ -42,7 +42,7 @@ function useCurrentWeatherApi(input) {
 		)
 			.then(res => res.json())
 			.then(data => {
-				//console.log('current weather: ' + data);
+				console.log('current weather: ' + data);
 				showCurrentWeather(data);
 				useOneCallApi(data);
 			});
@@ -53,7 +53,7 @@ function useCurrentWeatherApi(input) {
 		)
 			.then(res => res.json())
 			.then(data => {
-				// console.log('current weather: ' + data);
+				console.log('current weather: ', data);
 				showCurrentWeather(data);
 				useOneCallApi(data);
 			});
@@ -69,13 +69,13 @@ function useOneCallApi(data) {
 	)
 		.then(res => res.json())
 		.then(data => {
-			// console.log('forecast: ' + data);
+			console.log('forecast: ', data);
 			showForecast([data]);
 		});
 }
 
 function showCurrentWeather(data) {
-	const { name } = data;
+	const { name, dt } = data;
 	const { country } = data.sys;
 	const { description, icon } = data.weather[0];
 	// capitalize first character of weather description
@@ -86,10 +86,15 @@ function showCurrentWeather(data) {
 
 	// console.log(data);
 
-	let now = new Date();
+	// let now = new Date();
+	let now = moment().format('dddd') + " " + moment().format('LL');
+	let time = moment().format('h:mm a');
+	console.log(time);
 
-	currentWeather.innerHTML = `
-	<p class="current-weather__date">${dateBuilder(now)}</p>
+	// <p class="current-weather__date">${dateBuilder(now)}</p>
+	currentWeather.innerHTML = `	
+	<p class="current-weather__date">${now}</p>
+	<p className="current-weather__time">${time}</p>
 	<h2 class="current-weather__location">${name}, ${country}</h2>
 	<div class="current-weather__details">
 		<img class="weather-icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather" />
@@ -141,36 +146,36 @@ function showForecast(data) {
 	});
 }
 
-function dateBuilder(d) {
-	let months = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December',
-	];
-	let days = [
-		'Sunday',
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday',
-	];
+// function dateBuilder(d) {
+// 	let months = [
+// 		'January',
+// 		'February',
+// 		'March',
+// 		'April',
+// 		'May',
+// 		'June',
+// 		'July',
+// 		'August',
+// 		'September',
+// 		'October',
+// 		'November',
+// 		'December',
+// 	];
+// 	let days = [
+// 		'Sunday',
+// 		'Monday',
+// 		'Tuesday',
+// 		'Wednesday',
+// 		'Thursday',
+// 		'Friday',
+// 		'Saturday',
+// 	];
 
-	let day = days[d.getDay()];
-	let date = d.getDate();
-	let month = months[d.getMonth()];
-	let year = d.getFullYear();
+// 	let day = days[d.getDay()];
+// 	let date = d.getDate();
+// 	let month = months[d.getMonth()];
+// 	let year = d.getFullYear();
 
-	//console.log(`${day} ${month} ${date}, ${year}`);
-	return `${day} ${month} ${date}, ${year}`;
-}
+// 	//console.log(`${day} ${month} ${date}, ${year}`);
+// 	return `${day} ${month} ${date}, ${year}`;
+// }
