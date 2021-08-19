@@ -112,12 +112,12 @@ function showForecast(data) {
 	const dailyData = data[0].daily;
 	// console.log(dailyData);
 	const { pop } = dailyData[0];
-	// console.log(pop);
+	console.log(pop * 100);
 
 	// add precipittation to current-weather since it is not in the current weather api data
 	const p = document.createElement('p');
 	p.className = 'precipitation';
-	p.innerText = `Preciptation: ${pop}%`;
+	p.innerText = `Chance of Preciptation: ${pop * 100}%`;
 	currentWeather.querySelector('.current-weather__details .small-text').appendChild(p);
 
 	forecastWeather.innerHTML = ''
